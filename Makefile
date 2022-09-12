@@ -1,11 +1,13 @@
-.PHONY: clean down fresh setup up
+.PHONY: clean down fresh perms setup up
 
-clean: down
-	sudo chown -R "$(USER):$(USER)" .
+clean: down perms
 	rm -rf $(CURDIR)/mnesia/*/rabbit*
 
 down:
 	docker compose down
+
+perms:
+	sudo chown -R "$(USER):$(USER)" .
 
 setup:
 	sudo chown -R 999 mnesia

@@ -10,12 +10,13 @@ services:
     image: pivotalrabbitmq/rabbitmq-stream:latest
     hostname: node0
     environment:
-      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS='-rabbitmq_stream advertised_host localhost'
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbitmq_stream advertised_host localhost
     networks:
       - rabbitnet
     volumes:
       - ./rabbitmq.conf:/etc/rabbitmq/conf.d/20-cluster.conf
       - ./mnesia/node0:/var/lib/rabbitmq/mnesia
+      - ./erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
     ports:
       # HOST:CONTAINER
       - 15672:15672
@@ -25,12 +26,13 @@ services:
     image: pivotalrabbitmq/rabbitmq-stream:latest
     hostname: node1
     environment:
-      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS='-rabbitmq_stream advertised_host localhost'
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbitmq_stream advertised_host localhost
     networks:
       - rabbitnet
     volumes:
       - ./rabbitmq.conf:/etc/rabbitmq/conf.d/20-cluster.conf
       - ./mnesia/node1:/var/lib/rabbitmq/mnesia
+      - ./erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
     ports:
       # HOST:CONTAINER
       - 15673:15672
@@ -40,12 +42,13 @@ services:
     image: pivotalrabbitmq/rabbitmq-stream:latest
     hostname: node2
     environment:
-      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS='-rabbitmq_stream advertised_host localhost'
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbitmq_stream advertised_host localhost
     networks:
       - rabbitnet
     volumes:
       - ./rabbitmq.conf:/etc/rabbitmq/conf.d/20-cluster.conf
       - ./mnesia/node2:/var/lib/rabbitmq/mnesia
+      - ./erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
     ports:
       # HOST:CONTAINER
       - 15674:15672
