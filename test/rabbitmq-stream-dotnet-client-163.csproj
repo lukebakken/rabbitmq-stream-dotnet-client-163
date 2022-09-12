@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="RabbitMQ.Stream.Client" Version="1.0.0-rc.5" />
+    <PackageReference Include="RabbitMQ.Stream.Client" Version="1.0.0-rc.5.2" />
   </ItemGroup>
 
 </Project>
