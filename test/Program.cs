@@ -5,13 +5,13 @@ using RabbitMQ.Stream.Client.Reliable;
 
 var config = new StreamSystemConfig()
 {
-    UserName = "test",
-    Password = "test",
+    UserName = "guest",
+    Password = "guest",
     Endpoints = new EndPoint[]
     {
         new DnsEndPoint("node0", 5552),
-        new DnsEndPoint("node1", 5552),
-        new DnsEndPoint("node2", 5552),
+        new DnsEndPoint("node1", 5553),
+        new DnsEndPoint("node2", 5554),
     }
 };
 
