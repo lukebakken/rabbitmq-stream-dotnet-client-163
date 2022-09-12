@@ -1,0 +1,53 @@
+version: '3'
+
+networks:
+  rabbitnet:
+    name: rabbitnet
+    driver: bridge
+
+services:
+  node0:
+    image: pivotalrabbitmq/rabbitmq-stream:latest
+    hostname: node0
+    environment:
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS='-rabbitmq_stream advertised_host localhost'
+    networks:
+      - rabbitnet
+    volumes:
+      - ./rabbitmq.conf:/etc/rabbitmq/conf.d/20-cluster.conf
+      - ./mnesia/node0:/var/lib/rabbitmq/mnesia
+    ports:
+      # HOST:CONTAINER
+      - 15672:15672
+      - 5672:5672
+      - 5552:5552
+  node1:
+    image: pivotalrabbitmq/rabbitmq-stream:latest
+    hostname: node1
+    environment:
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS='-rabbitmq_stream advertised_host localhost'
+    networks:
+      - rabbitnet
+    volumes:
+      - ./rabbitmq.conf:/etc/rabbitmq/conf.d/20-cluster.conf
+      - ./mnesia/node1:/var/lib/rabbitmq/mnesia
+    ports:
+      # HOST:CONTAINER
+      - 15673:15672
+      - 5673:5672
+      - 5553:5552
+  node2:
+    image: pivotalrabbitmq/rabbitmq-stream:latest
+    hostname: node2
+    environment:
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS='-rabbitmq_stream advertised_host localhost'
+    networks:
+      - rabbitnet
+    volumes:
+      - ./rabbitmq.conf:/etc/rabbitmq/conf.d/20-cluster.conf
+      - ./mnesia/node2:/var/lib/rabbitmq/mnesia
+    ports:
+      # HOST:CONTAINER
+      - 15674:15672
+      - 5674:5672
+      - 5554:5552
