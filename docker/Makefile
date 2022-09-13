@@ -10,6 +10,7 @@ perms:
 	sudo chown -R "$(USER):$(USER)" .
 
 setup:
+	sudo chmod 0600 erlang.cookie
 	sudo chown -R 999 mnesia
 
 up:
